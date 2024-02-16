@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from budget import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("transactions/all/",views.Transactionlistview.as_view(),name='transaction-list'),
+    path("transactions/add/",views.Transactioncreateview.as_view(),name="transaction-add"),
+    path("transactions/<int:pk>/",views.Transactiondetailview.as_view(),name="transaction-detail"),
+    path("transactions/<int:pk>/remove/",views.Transactiondeleteview.as_view(),name='transaction-delete'),
+    path("transactions/<int:pk>/edit/",views.TransactionUpdateview.as_view(),name='transaction-update'),
+    path("signup/",views.Signupview.as_view(),name="signup"),
+    path("signin/",views.Signinview.as_view(),name="signin"),
+    path("signout/",views.Signgnoutview.as_view(),name="signout")
 ]
